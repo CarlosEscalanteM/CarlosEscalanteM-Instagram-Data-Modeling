@@ -10,9 +10,9 @@ Base = declarative_base()
 class User(Base):
     __tablename__="user"
     ID = Column(Integer, primary_key=True)
-    username = Column(String(150), nullable=False, unique = True)
-    first_name = Column(String(25), nullable=False)
-    last_name = Column(String(25))    
+    username = Column(String(60), nullable=False, unique = True)
+    first_name = Column(String(150), nullable=False)
+    last_name = Column(String(150), nullable=False)    
     email = Column(String(150), nullable=False, unique = True)
     password = Column(String(150), nullable=False, unique = True)
     user_posting = relationship("post", backref="user")
@@ -40,12 +40,11 @@ class Post (Base):
 class Media(Base):
     __tablename__="media"
     ID = Column(Integer, primary_key = True)
-    type = (String(25))
+    type = (String(50))
     url = (String(150)) #Same string as email/user/password
     post_id = Column(Integer, ForeignKey("post.id"))
 
 
-  
     def to_dict(self):
         return {}
 
